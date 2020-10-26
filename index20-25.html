@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <script src="vue.js"></script>
+    <title>Document</title>
+</head>
+<body>
+ 
+<div id="app">
+    <ul>
+        <li v-for="(orts, index) in turluud" :key="orts"> {{ orts }}:({{ index }})</li>
+    </ul>
+        <button @click="turluud.push('Вино')">Орц нэмэх</button>
+        <button @click="khunsuud.push({ner: 'Вино', une: '15000', yu: 'Мадлин'})">Объёктд дата нэмэх</button>
+
+        <button @click="turluud.pop('Вино')">Орц хасах</button>
+        <button @click="khunsuud.pop({ner: 'Вино', une: '15000', yu: 'Мадлин'})">Объёктоос дата хасах</button>
+
+    <hr>
+        <span v-for="(number, i) in 20">{{ number }}:({{ i }}),</span>
+    <hr>
+        <ul>
+            <li  v-for="khuns in khunsuud">{{ khuns.ner }}-ний үнэ {{ khuns.une }} бөгөөд төрөл нь {{ khuns.yu }} болно.  
+            <span v-for="(value, key, index) in khuns"><BR>{{key}}: {{ value }}: индекс нь {{ index }} байна.</span> <div><BR></div>
+            </li>
+        </ul>
+    <hr>
+
+    <template v-for="(orts, index) in turluud">
+        <h1>{{ orts }}</h1>
+        <p>{{ index }}</p>
+    </template>
+
+</div>
+ <script >
+
+    new Vue({
+        el: '#app',
+        data:{
+            turluud: ['Мах','Ногоо','Архи','Виски'],
+            khunsuud: [
+                {ner: 'Мах', une:'5000', yu:'Үхэр'},
+                {ner: 'Ногоо', une:'1000', yu:'Төмс'},
+                {ner: 'Архи', une:'30000', yu:'Ерөөл'},
+                {ner: 'Виски', une:'50000', yu:'Жони'}
+            ]
+        }
+     });
+ </script>
+ </body>
+</html>

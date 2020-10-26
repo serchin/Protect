@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script src="vue.js"></script>
+</head>
+<body>
+ 
+<div id="app">
+<button v-on:click="increase(50)">Нэмэгдүүлэх</button>
+<button v-on:click="counter++">1-нэмэгдүүлэх</button>
+<p>{{ counter*2>50 ? '50-иас их утга байна': '50-иас бага утга байна' }}</p>
+<p v-on:mousemove= "updateCoordinate">Координат: {{ x }}/{{ y }} 
+    <span v-on: mousemove="notChange">Stop</span><!--<span v-on: mousemove.stop>Stop</span> Энэ тохиолдолд notChange функц хэрэггүй болно-->
+</p>
+<input type="text" v-on:keyup.enter.space.esc="alertMe"></div>
+</div>
+<script >
+
+new Vue({
+    el: '#app',
+    data: {
+        counter: 0,
+        x: 0,
+        y: 0
+    },
+    methods: { 
+        increase: function(step){
+    this.counter+=step;
+        },
+        updateCoordinate: function(event) {
+            this.x=event.clientX
+            this.y=event.clientY
+        },
+        notChange: function(event){
+
+            event.stopPropagation();
+        },
+        alertMe: function() {
+            alert('Alert шүү');
+        }
+    }
+})
+</script>
+</body>
+</html>
